@@ -1,3 +1,5 @@
+package com.example.telematiktelemedizin.Fachlogik;
+
 public class Benutzer{
 
     private int benutzerId;

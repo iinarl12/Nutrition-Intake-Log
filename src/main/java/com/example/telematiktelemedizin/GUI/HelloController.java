@@ -1,4 +1,4 @@
-package com.example.telematiktelemedizin;
+package com.example.telematiktelemedizin.GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
