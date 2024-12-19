@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.NahrungsmittelStammdatenController">
+   <children>
+      <TableView fx:id="table" layoutX="23.0" layoutY="55.0" prefHeight="269.0" prefWidth="355.0">
+        <columns>
+          <TableColumn id="name" fx:id="name" prefWidth="189.0" text="Name" />
+          <TableColumn id="kalorien" fx:id="kalorien" prefWidth="165.0" text="Kalorien" />
+        </columns>
+      </TableView>
+      <TextField fx:id="suchFeld" layoutX="23.0" layoutY="21.0" onKeyReleased="#suchen" promptText="Nach Name suchen" />
+   </children>
+</Pane>

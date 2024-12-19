@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fx:id="menuset" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenusetController">
+   <content>
+      <Pane fx:id="pane" prefHeight="471.0" prefWidth="800.0">
+         <children>
+            <TextField fx:id="name" layoutX="50.0" layoutY="62.0" prefHeight="25.0" prefWidth="176.0" promptText="Menuname" />
+            <Text fx:id="benutzer" layoutX="50.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" fill="#79aa6b" text="Benutzer" >
+               <font>
+                  <Font name="Candara" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </content>
+</ScrollPane>

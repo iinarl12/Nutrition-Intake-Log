@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="nahrungsmittelTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.NahrungsmittelTableController">
+   <children>
+      <TextField fx:id="suchTextField" layoutX="7.0" layoutY="39.0" onKeyReleased="#suchen" prefHeight="25.0" prefWidth="313.0" promptText="Nach Name suchen" />
+      <TableView fx:id="tabelview" layoutX="7.0" layoutY="88.0" prefHeight="295.0" prefWidth="789.0">
+        <columns>
+          <TableColumn fx:id="nahrung" prefWidth="238.0" text="Name" />
+            <TableColumn fx:id="kcal" prefWidth="99.0" text="Kalorien" />
+          <TableColumn fx:id="khydrate" prefWidth="119.0" text="Kohlenhydrate(g)" />
+            <TableColumn fx:id="protein" text="Protein(g)" />
+            <TableColumn fx:id="fett" prefWidth="91.0" text="Fett(g)" />
+            <TableColumn fx:id="zucker" prefWidth="85.0" text="Zucker(g)" />
+            <TableColumn fx:id="fhirID" prefWidth="76.0" text="FHIR ID" />
+        </columns>
+      </TableView>
+      <Button fx:id="fhirupdate" layoutX="652.0" layoutY="400.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="106.0" text="Fhir update" />
+   </children>
+</Pane>

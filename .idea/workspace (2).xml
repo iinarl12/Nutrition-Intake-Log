@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="telematiktelemedizin:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1ac73134-bc23-49e0-be61-f6bcac6097cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/telematiktelemedizin_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/telematiktelemedizin_jar.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2Iy9m2H349IzfJiS2iBog43eadQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.3218391" />
+    <property name="settings.editor.selected.configurable" value="advanced.settings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\niiii\telematiktelemedizin_ws_2223_gruppe_1\src\main\resources" />
+      <recent name="C:\Users\niiii\telematiktelemedizin_ws_2223_gruppe_1\src\main\java" />
+      <recent name="C:\Users\niiii\telematiktelemedizin_ws_2223_gruppe_1\src\main\java\GUI" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="GUI" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Fachlogik.Main" />
+      <module name="telematiktelemedizin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Fachlogik.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ac73134-bc23-49e0-be61-f6bcac6097cd" name="Changes" comment="" />
+      <created>1671143116752</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671143116752</updated>
+      <workItem from="1671143126516" duration="8109000" />
+      <workItem from="1671187611165" duration="12817000" />
+      <workItem from="1671203021018" duration="31457000" />
+      <workItem from="1671351601429" duration="2023000" />
+      <workItem from="1671357746570" duration="6512000" />
+      <workItem from="1671378992717" duration="18195000" />
+      <workItem from="1671454548803" duration="216000" />
+      <workItem from="1671526432702" duration="12558000" />
+      <workItem from="1671541433865" duration="4087000" />
+      <workItem from="1671711282588" duration="623000" />
+      <workItem from="1673002309056" duration="298000" />
+      <workItem from="1673267702084" duration="64000" />
+      <workItem from="1673275606107" duration="301000" />
+      <workItem from="1673705208300" duration="17084000" />
+      <workItem from="1673726643742" duration="18724000" />
+      <workItem from="1673866929546" duration="2898000" />
+      <workItem from="1673876992391" duration="9934000" />
+      <workItem from="1673887824947" duration="1130000" />
+      <workItem from="1673903746933" duration="9799000" />
+      <workItem from="1673953703936" duration="4418000" />
+      <workItem from="1673960611239" duration="1510000" />
+      <workItem from="1673963309945" duration="2098000" />
+      <workItem from="1673993864797" duration="598000" />
+      <workItem from="1677502985325" duration="95000" />
+      <workItem from="1677503496946" duration="1893000" />
+      <workItem from="1677505855681" duration="532000" />
+    </task>
+    <task id="LOCAL-00001" summary="Nahrungsmittelstammdaten pull -&gt; fertig">
+      <created>1671187845153</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671187845153</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Menuset mit daten aus Nahrungsmittelstammdaten-&gt; fertig">
+      <created>1671215019837</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671215019837</updated>
+    </task>
+    <task id="LOCAL-00003" summary="tagebubcheintrag-&gt;fertig">
+      <created>1671228700845</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671228700845</updated>
+    </task>
+    <task id="LOCAL-00004" summary="benutzer fast fertig">
+      <created>1671358047680</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671358047680</updated>
+    </task>
+    <task id="LOCAL-00005" summary="benutzer fertig noch fhir">
+      <created>1671364300530</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671364300531</updated>
+    </task>
+    <task id="LOCAL-00006" summary="alles fertig">
+      <created>1671394841014</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671394841014</updated>
+    </task>
+    <task id="LOCAL-00007" summary="alles fertig-fixed">
+      <created>1671396643723</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671396643723</updated>
+    </task>
+    <task id="LOCAL-00008" summary="alles fertig-fixed">
+      <created>1671526729125</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671526729125</updated>
+    </task>
+    <task id="LOCAL-00009" summary="alles fertig-fixed">
+      <created>1671545974295</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671545974295</updated>
+    </task>
+    <task id="LOCAL-00010" summary="abgabe2">
+      <created>1673705362465</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673705362465</updated>
+    </task>
+    <task id="LOCAL-00011" summary="abgabe 3 alles fertig">
+      <created>1673719715564</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673719715564</updated>
+    </task>
+    <task id="LOCAL-00012" summary="abgabe 3 alles fertig">
+      <created>1673870074915</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1673870074915</updated>
+    </task>
+    <task id="LOCAL-00013" summary="alle Nahrungsmittelstammdaten fertig">
+      <created>1673886081729</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673886081729</updated>
+    </task>
+    <task id="LOCAL-00014" summary="patient von fhir fixed">
+      <created>1673908744862</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673908744862</updated>
+    </task>
+    <task id="LOCAL-00015" summary="patient von fhir fixed">
+      <created>1673913389923</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673913389923</updated>
+    </task>
+    <task id="LOCAL-00016" summary="tagebuch bearbeiten">
+      <created>1673957355504</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673957355504</updated>
+    </task>
+    <task id="LOCAL-00017" summary="speichern von benutzer fixed">
+      <created>1673965069701</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673965069701</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Nahrungsmittelstammdaten pull -&gt; fertig" />
+    <MESSAGE value="Menuset mit daten aus Nahrungsmittelstammdaten-&gt; fertig" />
+    <MESSAGE value="tagebubcheintrag-&gt;fertig" />
+    <MESSAGE value="benutzer fast fertig" />
+    <MESSAGE value="benutzer fertig noch fhir" />
+    <MESSAGE value="alles fertig" />
+    <MESSAGE value="alles fertig-fixed" />
+    <MESSAGE value="abgabe2" />
+    <MESSAGE value="abgabe 3 alles fertig" />
+    <MESSAGE value="alle Nahrungsmittelstammdaten fertig" />
+    <MESSAGE value="patient von fhir fixed" />
+    <MESSAGE value="tagebuch bearbeiten" />
+    <MESSAGE value="speichern von benutzer fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="speichern von benutzer fixed" />
+  </component>
+</project>
