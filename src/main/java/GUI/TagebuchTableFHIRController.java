@@ -16,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -97,7 +96,6 @@ public class TagebuchTableFHIRController {
 
     public void refresh(){
         nList.clear();
-        datum.setValue(null);
     }
 
 
@@ -120,32 +118,12 @@ public class TagebuchTableFHIRController {
 
             if(selectedBenutzer!=null){
                 refreshTable();
-                table.setEditable(true);
 
                 zeit.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getZeit()));
                 nahrungsmittel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNahrungsmittel()));
                 menge.setCellValueFactory(mg -> new SimpleObjectProperty<>(mg.getValue().getMenge()));
                 einheiten.setCellValueFactory(einheit -> new SimpleObjectProperty(einheit.getValue().getEinheit()));
                 beschwerde.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBeschwerde()));
-                beschwerde.setEditable(true);
-                beschwerde.setCellFactory(TextFieldTableCell.forTableColumn());
-                beschwerde.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Tagsuebersicht, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<Tagsuebersicht, String> tagsuebersichtStringCellEditEvent) {
-                        ((Tagsuebersicht) tagsuebersichtStringCellEditEvent.getTableView().getItems().get(tagsuebersichtStringCellEditEvent.getTablePosition().getRow())).setBeschwerde(tagsuebersichtStringCellEditEvent.getNewValue());
-                        Tagsuebersicht tu= tagsuebersichtStringCellEditEvent.getTableView().getItems().get(tagsuebersichtStringCellEditEvent.getTablePosition().getRow());
-                        DBTagesuebersicht dbtb= new DBTagesuebersicht(dbConnect);
-                        boolean db=dbtb.updateTagebuch(tu);
-                        Tagebuch tb= new Tagebuch();
-                        boolean fhir=tb.updateNutritionIntake(tu);
-                        if(db&&fhir){
-                            Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,
-                                    "Tagebuch wurde erfolgreich in Datenbank und FHIR geupdated", ButtonType.OK);
-                            a1.show();
-                        }
-
-                    }
-                });
                 fhirId.setCellValueFactory(fhir -> new SimpleObjectProperty<>(fhir.getValue().getFhirID()));
 
                 table.setItems(nList);

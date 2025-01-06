@@ -56,7 +56,7 @@ public class Patienten {
                 patient.setId(fhir);
                 MethodOutcome outcome= client.update().resource(patient).execute();
                 IdType id = (IdType) outcome.getId();
-                //System.out.println("Got ID: " + id.getValue());
+                System.out.println("Got ID: " + id.getValue());
                 fhirId=benutzer.getFhirId();
 
                 List<IBaseResource> observationList= new ArrayList<>();
@@ -75,7 +75,7 @@ public class Patienten {
                         .execute();
 
                 IdType idObs = (IdType) outcomeObs.getId();
-                //System.out.println("Got IDOBSaved: " + idObs.getValue());
+                System.out.println("Got IDOBSaved: " + idObs.getValue());
             }
             else{
                 MethodOutcome outcome = client.create()
@@ -92,6 +92,7 @@ public class Patienten {
                 Observation gewicht= new Observation();
                 gewicht.setMeta(new Meta().addProfile("http://example.org/StructureDefinition/TelematikPatientBodyWeight"+fhirId));
                 gewicht.setStatus(Enumerations.ObservationStatus.FINAL);
+                System.out.println(fhirId+"      obs");
 
                 CodeableConcept vital= new CodeableConcept();
                 vital.addCoding("http://terminology.hl7.org/CodeSystem/observation-category","vital-signs","Vital Signs");
@@ -117,7 +118,7 @@ public class Patienten {
                 IIdType idObs = outcomeObs.getId();
                 Observation resultObs=(Observation) outcomeObs.getResource();
                 String fhirIdObs= resultObs.getIdPart();
-                //System.out.println(fhirIdObs+"   obsId");
+                System.out.println(fhirIdObs+"   obsId");
             }
 
 
@@ -183,7 +184,7 @@ public class Patienten {
             Bundle bundleObs= client.search().forResource(Observation.class).withProfile("http://example.org/StructureDefinition/TelematikPatientBodyWeight"+benutzerNew.getFhirId()).returnBundle(Bundle.class).execute();
 
             observationList.addAll(BundleUtil.toListOfResources(ctx,bundleObs));
-            System.out.println(fhirId+ " idddddd "+observationList.size()+" obs size  " +"http://example.org/StructureDefinition/TelematikPatientBodyWeight"+benutzerNew.getFhirId() );
+            //System.out.println(fhirId+ " idddddd "+observationList.size()+" obs size  " +"http://example.org/StructureDefinition/TelematikPatientBodyWeight"+benutzerNew.getFhirId() );
 
             Observation observation= (Observation) observationList.get(0);
             benutzerNew.setGewicht(observation.getValueQuantity().getValue().doubleValue());
@@ -213,11 +214,9 @@ public class Patienten {
             Bundle bundleObs= client.search().forResource(Observation.class).withProfile("http://example.org/StructureDefinition/TelematikPatientBodyWeight"+benutzer.getFhirId()).returnBundle(Bundle.class).execute();
 
             observationList.addAll(BundleUtil.toListOfResources(ctx,bundleObs));
-            if(bundleObs.getLink().size()>1){
-                while(bundleObs.getLink().get(1).getRelation().name().equals("NEXT")){
-                    bundleObs=client.loadPage().next(bundleObs).execute();
-                    observationList.addAll(BundleUtil.toListOfResources(ctx,bundleObs));
-                }
+            while(bundleObs.getLink().get(1).getRelation().name().equals("NEXT")){
+                bundleObs=client.loadPage().next(bundleObs).execute();
+                observationList.addAll(BundleUtil.toListOfResources(ctx,bundleObs));
             }
 
             for(IBaseResource observation:observationList){
@@ -232,7 +231,7 @@ public class Patienten {
                         .execute();
                 OperationOutcome outcome = (OperationOutcome) responseObs.getOperationOutcome();
                 if (outcome != null) {
-                    //System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
+                    System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
                     if(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode().contains("SUCCESSFUL_DELETE")){
                         observationDeleted.add(true);
                     }
@@ -251,7 +250,7 @@ public class Patienten {
                         .execute();
                 OperationOutcome outcome = (OperationOutcome) responseNI.getOperationOutcome();
                 if (outcome != null) {
-                    //System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
+                    System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
                     if(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode().contains("SUCCESSFUL_DELETE")){
                         nutritionIntakeDeleted.add(true);
                     }
@@ -267,7 +266,7 @@ public class Patienten {
                         .execute();
                 OperationOutcome outcome = (OperationOutcome) response.getOperationOutcome();
                 if (outcome != null) {
-                    //System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
+                    System.out.println(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode());
                     if(outcome.getIssueFirstRep().getDetails().getCodingFirstRep().getCode().contains("SUCCESSFUL_DELETE")){
                         return true;
                     }

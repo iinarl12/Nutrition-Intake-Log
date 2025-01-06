@@ -144,41 +144,4 @@ public class DBTagesuebersicht {
         }
     }
 
-    public boolean updateTagebuch(Tagsuebersicht tagsuebersicht){
-        String update = "UPDATE tagsuebersicht set datum=?, id_benutzer=?, zeit=?, nahrungsmittel=?, menge=?, einheit=?, beschwerde=?, nutritionFHIRId=? where id_tagebuch="+tagsuebersicht.getTagebuchId()+";";
-        boolean updated = false;
-        try {
-            dbConnect.getCon().setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try
-        {
-            PreparedStatement preparedStatement = DBConnect.getInstance().getCon().prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
-
-
-            preparedStatement.setDate(1, Date.valueOf(tagsuebersicht.getDatum()));
-            preparedStatement.setLong(2, tagsuebersicht.getBenutzer().getBenutzerId());
-            preparedStatement.setTime(3, Time.valueOf(tagsuebersicht.getZeit()));
-            preparedStatement.setString(4, tagsuebersicht.getNahrungsmittel());
-            preparedStatement.setInt(5, tagsuebersicht.getMenge());
-            preparedStatement.setString(6, tagsuebersicht.getEinheit().name());
-            preparedStatement.setString(7, tagsuebersicht.getBeschwerde());
-            preparedStatement.setString(8, tagsuebersicht.getNutritionFHIRId());
-            preparedStatement.executeUpdate();
-
-            dbConnect.getCon().commit();
-
-
-            updated = true;
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        return updated;
-    }
-
 }

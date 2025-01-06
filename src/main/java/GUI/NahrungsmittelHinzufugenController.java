@@ -87,7 +87,6 @@ public class NahrungsmittelHinzufugenController {
 
     public void refresh(){
         datenList.clear();
-        datum.setValue(null);
         pane.getChildren().removeAll(pane.getChildren());
         pane.getChildren().add(datum);
         pane.getChildren().add(zeit);

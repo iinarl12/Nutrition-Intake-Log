@@ -2,7 +2,6 @@ package GUI;
 
 import Datenhaltung.DBConnect;
 import Datenhaltung.DBTagesuebersicht;
-import FHIR.Tagebuch;
 import Fachlogik.Benutzer;
 import Fachlogik.Einheit;
 import Fachlogik.Tagsuebersicht;
@@ -15,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -92,7 +90,6 @@ public class TagebuchTableController {
 
     public void refresh(){
         nList.clear();
-        datum.setValue(null);
     }
 
 
@@ -147,25 +144,11 @@ public class TagebuchTableController {
             if(selectedBenutzer!=null){
                 refreshTable();
 
-                table.setEditable(true);
-
                 zeit.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getZeit()));
                 nahrungsmittel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNahrungsmittel()));
                 menge.setCellValueFactory(mg -> new SimpleObjectProperty<>(mg.getValue().getMenge()));
                 einheiten.setCellValueFactory(einheit -> new SimpleObjectProperty(einheit.getValue().getEinheit()));
                 beschwerde.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getBeschwerde()));
-                beschwerde.setEditable(true);
-                beschwerde.setCellFactory(TextFieldTableCell.forTableColumn());
-                beschwerde.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Tagsuebersicht, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<Tagsuebersicht, String> tagsuebersichtStringCellEditEvent) {
-                        ((Tagsuebersicht) tagsuebersichtStringCellEditEvent.getTableView().getItems().get(tagsuebersichtStringCellEditEvent.getTablePosition().getRow())).setBeschwerde(tagsuebersichtStringCellEditEvent.getNewValue());
-                        Tagsuebersicht tu= tagsuebersichtStringCellEditEvent.getTableView().getItems().get(tagsuebersichtStringCellEditEvent.getTablePosition().getRow());
-                        DBTagesuebersicht dbtb= new DBTagesuebersicht(dbConnect);
-                        dbtb.updateTagebuch(tu);
-
-                    }
-                });
 
                 table.setItems(nList);
 
@@ -214,11 +197,6 @@ public class TagebuchTableController {
             });
             return row;
         });
-
-    }
-
-    public void getselect(MouseEvent event){
-        table.getSelectionModel().getSelectedCells();
 
     }
 

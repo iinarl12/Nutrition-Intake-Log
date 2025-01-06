@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.util.Callback;
 import org.hl7.fhir.r5.model.Patient;
 
 import java.net.URL;
@@ -133,6 +132,8 @@ public class BenutzerController implements Initializable {
                 Patienten patienten= new Patienten();
                 bList.addAll(patienten.getPatient());
 
+
+
                 Statement mystatement  = DBConnect.getInstance().getCon().createStatement();
                 ResultSet benutzerDB=mystatement.executeQuery("select * from benutzer");
 
@@ -144,6 +145,7 @@ public class BenutzerController implements Initializable {
                     }
 
                 }
+
 
             }catch (Exception exception) {
                 exception.printStackTrace();
@@ -164,41 +166,26 @@ public class BenutzerController implements Initializable {
         tgeschlecht.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getGeschlecht()));
         fhirId.setCellValueFactory(data-> new SimpleObjectProperty<>(data.getValue().getFhirId()));
 
-        btable.setRowFactory(rf-> new TableRow<Benutzer>(){
-            @Override
-            public void updateItem(Benutzer benutzer, boolean empty){
-                super.updateItem(benutzer, empty);
-                if(benutzer!=null&&benutzer.getBenutzerId()==0){
-                    setStyle("-fx-background-color: rgb(225,174,174); ");
-                }
-                else{
-                    setStyle("");
-                }
-            }
-        });
-
         btable.setItems(bList);
 
     }
     private void setCellValueFromTableToTextField(){
         btable.setOnMouseClicked(e ->{
-            if(btable.getSelectionModel().getSelectedIndex()>-1){
-                Benutzer b1=btable.getItems().get(btable.getSelectionModel().getSelectedIndex());
-                selectedBenutzer=b1;
-                vorname.setText(""+selectedBenutzer.getVorname());
-                nachname.setText(""+selectedBenutzer.getNachname());
-                gewicht.setText(""+selectedBenutzer.getGewicht());
-                gew=selectedBenutzer.getGewicht();
-                gebDatum.setValue(selectedBenutzer.getGeburtsdatum());
-                geschlecht.setText(""+selectedBenutzer.getGeschlecht());
-                ges=selectedBenutzer.getGeschlecht();
-                setAllBenutzer();
-                tagebuchTableFHIRController.refresh();
-                tagebuchTableController.refresh();
-                nahrungsmittelHinzufugenController.refresh();
-                menusetTableController.populateTable();
-                menusetController.refresh();
-            }
+            Benutzer b1=btable.getItems().get(btable.getSelectionModel().getSelectedIndex());
+            selectedBenutzer=b1;
+            vorname.setText(""+selectedBenutzer.getVorname());
+            nachname.setText(""+selectedBenutzer.getNachname());
+            gewicht.setText(""+selectedBenutzer.getGewicht());
+            gew=selectedBenutzer.getGewicht();
+            gebDatum.setValue(selectedBenutzer.getGeburtsdatum());
+            geschlecht.setText(""+selectedBenutzer.getGeschlecht());
+            ges=selectedBenutzer.getGeschlecht();
+            setAllBenutzer();
+            tagebuchTableFHIRController.refresh();
+            tagebuchTableController.refresh();
+            nahrungsmittelHinzufugenController.refresh();
+            menusetTableController.populateTable();
+            menusetController.refresh();
         });
 
     }
@@ -225,6 +212,7 @@ public class BenutzerController implements Initializable {
     @FXML
     public void neue(ActionEvent actionEvent){
         clearEingabe();
+        geschlecht.setText("Geschlecht");
         selectedBenutzer=new Benutzer();
         setAllBenutzer();
     }
@@ -247,45 +235,43 @@ public class BenutzerController implements Initializable {
 
     @FXML
     public void delete(ActionEvent actionEvent) throws SQLException {
-        if(selectedBenutzer.getFhirId()!=null){
 
-
+        if(bList.contains(selectedBenutzer)){
             bList.remove(selectedBenutzer);
             clearEingabe();
-            Boolean fhirDelete=patienten.deletePatient(selectedBenutzer);
-            Boolean dbDelete = false;
-            if(fhirDelete)dbDelete=dbBenutzer.benutzerdelete(selectedBenutzer);
-
-            if(fhirDelete&&dbDelete){
-                Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Benutzer wurde erfolgreich gelöscht",ButtonType.OK);
-
-                a1.show();
-            }
-            else{
-                Alert a1 = new Alert(Alert.AlertType.WARNING,
-                        "Something went wrong",ButtonType.OK);
-                a1.show();
-            }
-
-            populateBenutzer();
-
-            geschlecht.setText("Geschlecht");
-            selectedBenutzer=new Benutzer();
-            setAllBenutzer();
         }
+        else{
+            clearEingabe();
+            bList.remove(selectedBenutzer);
+        }
+        setCellValueFromTableToTextField();
+        Boolean fhirDelete=patienten.deletePatient(selectedBenutzer);
+        Boolean dbDelete = false;
+        if(fhirDelete)dbDelete=dbBenutzer.benutzerdelete(selectedBenutzer);
+
+        if(fhirDelete&&dbDelete){
+            Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Benutzer wurde erfolgreich gelöscht",ButtonType.YES);
+            a1.show();
+        }
+        else{
+            Alert a1 = new Alert(Alert.AlertType.WARNING,
+                    "Something went wrong",ButtonType.YES);
+            a1.show();
+        }
+        populateBenutzer();
 
 
     }
 
     @FXML
     public void save(ActionEvent actionEvent) throws SQLException {
-        if(bList.contains(selectedBenutzer)&&selectedBenutzer.getBenutzerId()!=0) {
-            if (!vorname.getText().isEmpty() && !nachname.getText().isEmpty() && gewicht.getText()!=null  && ges != null && datumValid()) {
+        if(bList.contains(selectedBenutzer)) {
+            if (!vorname.getText().isEmpty() && !nachname.getText().isEmpty() && this.gewichtValid() && ges != null && datumValid()) {
 
                 selectedBenutzer.setVorname(vorname.getText());
                 selectedBenutzer.setNachname(nachname.getText());
-                selectedBenutzer.setGewicht(Integer.parseInt(gewicht.getText()));
+                selectedBenutzer.setGewicht(gew);
                 LocalDate date = gebDatum.getValue();
                 selectedBenutzer.setGeburtsdatum(date);
                 selectedBenutzer.setGeschlecht(ges);
@@ -293,41 +279,38 @@ public class BenutzerController implements Initializable {
                 Boolean fhirUpdated=patienten.savePatient(selectedBenutzer);
                 Boolean dbUpdated=dbBenutzer.updateBenutzer(selectedBenutzer);
 
+
                 if(fhirUpdated&&dbUpdated){
-                    //System.out.println("line 304 "+ selectedBenutzer.getVorname());
-
-                    populateBenutzer();
-
                     Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,
                             "Benutzer wurde erfolgreich in Datenbank und FHIR gespeichert", ButtonType.OK);
                     a1.show();
+                    setCellValueFromTableToTextField();
                 }
 
                 else{
                     Alert a1 = new Alert(Alert.AlertType.WARNING,
-                            "Something went wrong",ButtonType.OK);
+                            "Something went wrong",ButtonType.YES);
                     a1.show();
                 }
+                populateBenutzer();
             }
         }
         else{
-            if (!vorname.getText().isEmpty() && !nachname.getText().isEmpty() && gewicht.getText()!=null && ges != null && datumValid())
+            if (!vorname.getText().isEmpty() && !nachname.getText().isEmpty() && this.gewichtValid() && ges != null && datumValid())
             {
                 Benutzer newBenutzer= new Benutzer();
                 newBenutzer.setNachname(nachname.getText());
-                newBenutzer.setGewicht(Integer.parseInt(gewicht.getText()));
+                newBenutzer.setGewicht(gew);
                 LocalDate date = gebDatum.getValue();
                 newBenutzer.setGeburtsdatum(date);
                 newBenutzer.setGeschlecht(ges);
                 newBenutzer.setVorname(vorname.getText());
-                newBenutzer.setFhirId(selectedBenutzer.getFhirId());
 
 
                 Boolean fhirSaved=patienten.savePatient(newBenutzer);
                 Boolean dbSaved=dbBenutzer.addBenutzerDB(newBenutzer);
 
                 if(fhirSaved&&dbSaved){
-                    populateBenutzer();
                     Alert a1 = new Alert(Alert.AlertType.CONFIRMATION,
                             "Benutzer wurde erfolgreich in Datenbank und FHIR gespeichert", ButtonType.OK);
                     a1.show();
@@ -338,6 +321,7 @@ public class BenutzerController implements Initializable {
                             "Something went wrong",ButtonType.YES);
                     a1.show();
                 }
+                populateBenutzer();
 
             }
 
@@ -363,11 +347,24 @@ public class BenutzerController implements Initializable {
 
     }
 
+    public boolean gewichtValid(){
+        try {
+            gew = Double.parseDouble(gewicht.getText());
+            return true;
+        }
+        catch( Exception wrongInput){
+            Alert a1 = new Alert(Alert.AlertType.WARNING,
+                    "Gewicht muss eine Zahl(Punkt statt Koma)",ButtonType.OK);
+            a1.show();
+            return false;
+        }
+
+    }
 
     public boolean datumValid(){
         if(gebDatum.getValue().isBefore(LocalDate.now())) return true;
         Alert a1 = new Alert(Alert.AlertType.WARNING,
-                "Bitte ein gultiges Datum eingeben",ButtonType.OK);
+                "Bitte gultiges Datum eingeben",ButtonType.OK);
         a1.show();
         gebDatum.setValue(selectedBenutzer.getGeburtsdatum());
         return false;
@@ -379,7 +376,7 @@ public class BenutzerController implements Initializable {
         nachname.setText("");
         gewicht.setText("");
         gebDatum.setValue(null);
-        geschlecht.setText("Geschlecht");
+        geschlecht.setText("");
     }
 
 

@@ -7,9 +7,7 @@ import Fachlogik.Tagsuebersicht;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import ca.uhn.fhir.util.BundleUtil;
 import javafx.util.converter.LocalTimeStringConverter;
-import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r5.context.SystemOutLoggingService;
 import org.hl7.fhir.r5.model.*;
@@ -170,47 +168,6 @@ public class Tagebuch {
      }
         return false;
 
-    }
-
-    public boolean updateNutritionIntake(Tagsuebersicht tagsuebersicht){
-        try{
-            nutritionIntake.setSubject(new Reference("https://hapi.fhir.org/baseR5/Patient/"+tagsuebersicht.getBenutzer().getFhirId()));
-            NutritionIntake.NutritionIntakeConsumedItemComponent  consumedItem= new NutritionIntake.NutritionIntakeConsumedItemComponent();
-            CodeableReference codeableReference= new CodeableReference();
-            if(tagsuebersicht.getNutritionFHIRId()!=null){
-                codeableReference.setReference(new Reference("https://hapi.fhir.org/baseR5/NutritionProduct/"+tagsuebersicht.getNutritionFHIRId()));
-
-            }
-            else{
-                codeableReference.setConcept(new CodeableConcept().setText(tagsuebersicht.getNahrungsmittel()));
-            }
-            consumedItem.setNutritionProduct(codeableReference);
-            Quantity menge= new Quantity();
-            menge.setUnit(tagsuebersicht.getEinheit().name());
-            menge.setValue(tagsuebersicht.getMenge());
-            consumedItem.setAmount(menge);
-            BaseDateTimeType dateTime= new DateTimeType();
-            dateTime.setValue(Date.from(tagsuebersicht.getDatum().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            dateTime.setHour(tagsuebersicht.getZeit().getHour());
-            dateTime.setMinute(tagsuebersicht.getZeit().getMinute());
-            nutritionIntake.addConsumedItem(consumedItem);
-            nutritionIntake.setOccurrence(dateTime);
-            nutritionIntake.addNote(new Annotation().setText(tagsuebersicht.getBeschwerde()));
-            System.out.println("tes");
-
-            String fhir="NutritionIntake/"+tagsuebersicht.getFhirID();
-            nutritionIntake.setId(fhir);
-            MethodOutcome outcome= client.update().resource(nutritionIntake).execute();
-            IdType id = (IdType) outcome.getId();
-            System.out.println("Got ID: " + id.getValue());
-
-
-            return true;
-        }
-        catch (Exception exception){
-            System.out.println(exception);
-            return false;
-        }
     }
 
 

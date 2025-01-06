@@ -121,7 +121,7 @@ public class Benutzer{
 
     @Override
     public String toString() {
-        return " "+benutzerId + " " + vorname +" "+ nachname+" "+fhirId;
+        return " "+benutzerId + " " + vorname +" "+ nachname;
     }
 
 
